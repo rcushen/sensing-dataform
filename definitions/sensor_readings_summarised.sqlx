@@ -1,0 +1,17 @@
+config {
+    type: "table"
+}
+
+SELECT
+  TIMESTAMP_SECONDS( DIV(UNIX_SECONDS(timestamp), 60 * 10) * 60 * 10) AS timestamp_bucket,
+  COUNT(*) AS observation_count,
+  AVG(temperature) AS avg_temperature,
+  AVG(humidity) AS avg_humidity
+FROM
+  ${ref("sensor_readings")}
+WHERE
+  timestamp IS NOT NULL
+GROUP BY
+  timestamp_bucket
+ORDER BY
+  timestamp_bucket
