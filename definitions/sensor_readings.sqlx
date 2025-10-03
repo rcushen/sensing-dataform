@@ -1,0 +1,10 @@
+config {
+    type: "table"
+}
+
+SELECT
+  timestamp,
+  temperature,
+  humidity
+FROM
+  ${ref("sensing_data")}
