@@ -3,7 +3,7 @@ config {
 }
 
 SELECT
-  timestamp,
+  TIMESTAMP(DATETIME(timestamp, 'Australia/Sydney')) AS timestamp,
   temperature,
   humidity
 FROM
